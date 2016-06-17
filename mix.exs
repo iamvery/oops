@@ -7,6 +7,7 @@ defmodule Oops.Mixfile do
      elixir: "~> 1.2",
      build_embedded: Mix.env == :prod,
      start_permanent: Mix.env == :prod,
+     description: "",
      deps: deps]
   end
 
