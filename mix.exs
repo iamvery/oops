@@ -7,7 +7,8 @@ defmodule Oops.Mixfile do
      elixir: "~> 1.2",
      build_embedded: Mix.env == :prod,
      start_permanent: Mix.env == :prod,
-     description: "",
+     description: "oops",
+     package: package,
      deps: deps]
   end
 
@@ -29,5 +30,11 @@ defmodule Oops.Mixfile do
   # Type "mix help deps" for more examples and options
   defp deps do
     []
+  end
+
+  defp package do
+    [
+      licenses: ["MIT"],
+    ]
   end
 end
