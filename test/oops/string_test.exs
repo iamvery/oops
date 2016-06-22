@@ -2,6 +2,7 @@ defmodule StringTest do
   use ExUnit.Case
 
   alias Oops.String
+  import Oops.Sigils
 
   @string String.new("foo")
 
@@ -14,5 +15,9 @@ defmodule StringTest do
 
   test "chaining" do
     assert @string.reverse.upcase.value == "OOF"
+  end
+
+  test "sigil" do
+    assert ~y/lolwat/ == String.new("lolwat")
   end
 end
