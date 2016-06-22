@@ -5,11 +5,7 @@ defmodule Oops.ArrayTest do
 
   @array Array.new([1,2,3])
 
-  test "array" do
-    assert @array.reverse.value == [3,2,1]
-  end
-
-  test "like list" do
-    assert @array.last.value == 3
+  test "array is like enum and list" do
+    assert @array.reverse.last.value == 1
   end
 end
