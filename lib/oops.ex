@@ -15,6 +15,7 @@ defmodule Oops do
     end
   end
 
+  defp methods(nil), do: []
   defp methods(module) do
     {module, _} = Code.eval_quoted(module)
     for {name, arity} <- module.__info__(:functions) do
