@@ -2,7 +2,7 @@ defmodule Oops do
   defmacro __using__(opts) do
     module = opts[:like]
     properties = [:value]
-    [constructor(properties)] ++ [value_func] ++ methods(module)
+    [constructor(properties)] ++ getters(properties) ++ methods(module)
   end
 
   defp constructor(properties) do
@@ -12,9 +12,13 @@ defmodule Oops do
     end
   end
 
-  defp value_func do
-    quote do
-      def value({__MODULE__, data}), do: data
+  defp getters(properties) do
+    for {property, index} <- Enum.with_index(properties) do
+      quote do
+        def unquote(property)(data) do
+          elem(data, unquote(index)+1)
+        end
+      end
     end
   end
 
