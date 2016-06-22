@@ -1,4 +1,4 @@
-defmodule ArrayTest do
+defmodule Oops.ArrayTest do
   use ExUnit.Case
 
   alias Oops.Array

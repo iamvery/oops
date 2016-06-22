@@ -1,4 +1,4 @@
-defmodule StringTest do
+defmodule Oops.StringTest do
   use ExUnit.Case
 
   alias Oops.String
