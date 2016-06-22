@@ -1,11 +1,12 @@
 defmodule Oops do
   defmacro __using__(opts) do
     module = opts[:like]
-    [constructor] ++ [value_func] ++ methods(module)
+    properties = [:value]
+    [constructor(properties)] ++ [value_func] ++ methods(module)
   end
 
-  defp constructor do
-    vars = [:value] |> length |> generate_vars
+  defp constructor(properties) do
+    vars = properties |> length |> generate_vars
     quote do
       def new(unquote_splicing(vars)), do: {__MODULE__, unquote_splicing(vars)}
     end
