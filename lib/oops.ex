@@ -1,6 +1,5 @@
 defmodule Oops do
   defmacro __using__(like: module) do
-    {module, _} = Code.eval_quoted(module)
     [constructor|[value_func|methods(module)]]
   end
 
@@ -17,6 +16,7 @@ defmodule Oops do
   end
 
   defp methods(module) do
+    {module, _} = Code.eval_quoted(module)
     for {name, arity} <- module.__info__(:functions) do
       vars = generate_vars(arity-1)
       quote do
