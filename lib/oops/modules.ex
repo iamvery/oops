@@ -1,10 +1,11 @@
 defmodule Oops.Modules do
   @doc """
       iex> Oops.Modules.normalize(quote(do: Foo))
-      Foo
+      [Foo]
   """
   def normalize(modules) do
     modules
+    |> List.wrap
     |> eval_quoted
   end
 

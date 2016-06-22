@@ -8,4 +8,8 @@ defmodule ArrayTest do
   test "array" do
     assert @array.reverse.value == [3,2,1]
   end
+
+  test "like list" do
+    assert @array.last.value == 3
+  end
 end

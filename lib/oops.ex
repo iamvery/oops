@@ -4,9 +4,9 @@ defmodule Oops do
   @default_properties [:value]
 
   defmacro __using__(opts) do
-    module = opts[:like] |> Modules.normalize
+    modules = opts[:like] |> Modules.normalize
     properties = opts[:properties] || @default_properties
-    [constructor(properties)] ++ getters(properties) ++ methods(module)
+    [constructor(properties)] ++ getters(properties) ++ methods(modules)
   end
 
   defmacro defm(name, do: body) do
@@ -35,10 +35,9 @@ defmodule Oops do
     end
   end
 
-  defp methods(nil), do: []
-  defp methods(module) do
-    {module, _} = Code.eval_quoted(module)
-    for {name, arity} <- module.__info__(:functions) do
+  defp methods([]), do: []
+  defp methods(modules) do
+    for module <- modules, {name, arity} <- module.__info__(:functions) do
       vars = generate_vars(arity-1)
       quote do
         def unquote(name)(unquote_splicing(vars), {__MODULE__, value}) do
