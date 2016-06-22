@@ -6,13 +6,13 @@ defmodule Oops do
 
   defp constructor do
     quote do
-      def new(str), do: {__MODULE__, str}
+      def new(data), do: {__MODULE__, data}
     end
   end
 
   defp value_func do
     quote do
-      def value({__MODULE__, str}), do: str
+      def value({__MODULE__, data}), do: data
     end
   end
 
