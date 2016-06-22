@@ -1,8 +1,10 @@
 defmodule Oops do
+  alias Oops.Modules
+
   @default_properties [:value]
 
   defmacro __using__(opts) do
-    module = opts[:like]
+    module = opts[:like] |> Modules.normalize
     properties = opts[:properties] || @default_properties
     [constructor(properties)] ++ getters(properties) ++ methods(module)
   end
