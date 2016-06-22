@@ -1,7 +1,7 @@
 defmodule Oops do
   defmacro __using__(opts) do
     module = opts[:like]
-    properties = [:value]
+    properties = opts[:properties] || [:value]
     [constructor(properties)] ++ getters(properties) ++ methods(module)
   end
 

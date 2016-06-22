@@ -14,4 +14,14 @@ defmodule OopsTest do
     foo = Foo.new("lolwat")
     assert foo.value == "lolwat"
   end
+
+  defmodule Bar do
+    use Oops, properties: [:foo, :baz]
+  end
+
+  test "properties" do
+    bar = Bar.new("lol", "wat")
+    assert bar.foo == "lol"
+    assert bar.baz == "wat"
+  end
 end
