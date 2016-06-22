@@ -1,5 +1,6 @@
 defmodule Oops do
-  defmacro __using__(like: module) do
+  defmacro __using__(opts) do
+    module = opts[:like]
     [constructor|[value_func|methods(module)]]
   end
 
