@@ -5,9 +5,18 @@ defmodule Oops do
     [constructor(properties)] ++ getters(properties) ++ methods(module)
   end
 
+  defmacro defm(name, do: body) do
+    quote do
+      def unquote(name)(var!(this)) do
+        unquote(body)
+      end
+    end
+  end
+
   defp constructor(properties) do
     vars = properties |> length |> generate_vars
     quote do
+      import Oops
       def new(unquote_splicing(vars)), do: {__MODULE__, unquote_splicing(vars)}
     end
   end

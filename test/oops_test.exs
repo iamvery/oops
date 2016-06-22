@@ -24,4 +24,17 @@ defmodule OopsTest do
     assert bar.foo == "lol"
     assert bar.baz == "wat"
   end
+
+  defmodule Baz do
+    use Oops, properties: [:foo, :bar]
+
+    defm :foobar do
+      this.foo <> this.bar
+    end
+  end
+
+  test "methods" do
+    baz = Baz.new("lol", "wat")
+    assert baz.foobar == "lolwat"
+  end
 end
