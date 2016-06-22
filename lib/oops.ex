@@ -5,8 +5,9 @@ defmodule Oops do
   end
 
   defp constructor do
+    vars = [:value] |> length |> generate_vars
     quote do
-      def new(data), do: {__MODULE__, data}
+      def new(unquote_splicing(vars)), do: {__MODULE__, unquote_splicing(vars)}
     end
   end
 
